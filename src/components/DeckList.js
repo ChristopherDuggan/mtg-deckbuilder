@@ -24,8 +24,14 @@ class DeckList extends React.Component {
     console.log('this decreases the card count')
 
     let affectedCard = this.state.deckArray.findIndex((card) =>card.name === e.target.className)
-    if(this.state.deckArray[affectedCard].count > 0) {
+
+    if(this.state.deckArray[affectedCard].count > 1) {
       this.setState(previousState => this.state.deckArray[affectedCard].count -= 1)
+    }
+    if(this.state.deckArray[affectedCard].count === 1) {
+      console.log('splice condition met')
+      this.state.deckArray.splice(affectedCard, 1)
+      this.setState(previousState =>this.state.deckArray)
     }
   }
 
