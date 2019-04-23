@@ -2,8 +2,18 @@ import React from 'react'
 
 class Results extends React.Component {
   render() {
+    console.log(this.props.results)
+    const renderResults = this.props.results.map(result => (
+      <div>
+        <h3>{result.name}</h3>
+        <img src={result.imageUrl}/>
+      </div>))
     return (
-      <h1>Results View</h1>
+      <div>
+        <h1>Results View</h1>
+        {renderResults}
+      </div>
+
     )
   }
 }

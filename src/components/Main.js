@@ -1,19 +1,33 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import Home from './Home'
 import Advanced from './Advanced'
 import Results from './Results'
 import DeckDetails from './DeckDetails'
 
 class Main extends React.Component{
+  renderSwitch(currentView){
+    switch(currentView){
+      case 'DeckDetails':
+      return <DeckDetails/>;
+      case 'Advanced':
+      return <Advanced/>
+      case 'Results':
+      return <Results results={this.props.searchResults}/>
+      default:
+      return <Home/>
+    }
+  }
   render() {
+
+    console.log(this.props.searchResults)
+
+    const { currentView } = this.props
     return(
       <main>
-        <h1>This is the main section</h1>
-        <Route path="/results" component={Results} />
-        <Route path="/advanced" component={Advanced} />
-        <Route path="/deckdetails" component={DeckDetails} />
+        {this.renderSwitch(currentView)}
       </main>
     )
+
   }
 }
 
