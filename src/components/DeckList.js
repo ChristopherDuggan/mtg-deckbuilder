@@ -1,51 +1,15 @@
 import React from 'react'
 
 class DeckList extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      deckArray: [
-        {name: `suq'ata lancer`, count: 1},
-        {name :`llanowar elves`, count: 2},
-        {name: `niv-mizzet, the firemind`, count: 4}
-      ]
-    }
-    this.incrementCard = this.incrementCard.bind(this)
-    this.decrementCard = this.decrementCard.bind(this)
-  }
-  incrementCard (e) {
-    let affectedCard = this.state.deckArray.findIndex((card) =>card.name === e.target.className)
-    if(this.state.deckArray[affectedCard].count < 4) {
-      this.setState(previousState => this.state.deckArray[affectedCard].count += 1)
-    }
-  }
-
-  decrementCard (e) {
-    console.log('this decreases the card count')
-
-    let affectedCard = this.state.deckArray.findIndex((card) =>card.name === e.target.className)
-
-    if(this.state.deckArray[affectedCard].count > 1) {
-      this.setState(previousState => this.state.deckArray[affectedCard].count -= 1)
-    }
-    if(this.state.deckArray[affectedCard].count === 1) {
-      console.log('splice condition met')
-      this.state.deckArray.splice(affectedCard, 1)
-      this.setState(previousState =>this.state.deckArray)
-    }
-  }
-
-
-  // You're going to need spread (...) to add and remove cards from the array
 
   render() {
-    const makeList = this.state.deckArray.map(card => {
+    const makeList = this.props.deckArray.map(card => {
       return (
         <li key={card.name}>
           {card.name}
-          x{card.count}
-          <span className={card.name} onClick={this.incrementCard}>+</span>
-          <span className={card.name} onClick={this.decrementCard}>-</span>
+          x {card.count}
+          <span onClick={() => this.props.incrementCard(card)}> + </span>
+          <span onClick={() => this.props.decrementCard(card)}> - </span>
         </li>
       )
     })

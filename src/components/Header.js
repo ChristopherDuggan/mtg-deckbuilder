@@ -1,35 +1,13 @@
 import React from 'react'
 
 class Header extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {}
-    this.handleTextInput = this.handleTextInput.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
-  }
-
-  handleSubmit(e){
-    e.preventDefault()
-    this.props.search(e, this.state)
-    this.props.changeView(e)
-  }
-
-  handleTextInput(e) {
-    const type = e.target.getAttribute('input_type')
-    const value = e.target.value
-
-    this.setState(state => {
-      return {[type]: value}
-    })
-  }
-
   render() {
 
     return(
       <div>
         <form
           id="Results"
-          onSubmit={this.handleSubmit}>
+          onSubmit={this.props.handleSubmit}>
           <input
             placeholder="Search by Name"
 
@@ -37,7 +15,7 @@ class Header extends React.Component {
 
             id="nameField"
 
-            onChange={this.handleTextInput}
+            onChange={this.props.handleTextInput}
           />
           <button type="submit">Submit</button>
         </form>

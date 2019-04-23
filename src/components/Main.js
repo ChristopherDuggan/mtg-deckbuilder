@@ -12,14 +12,17 @@ class Main extends React.Component{
       case 'Advanced':
       return <Advanced/>
       case 'Results':
-      return <Results results={this.props.searchResults}/>
+      return(
+        <Results
+          results={this.props.searchResults}
+          addCardToList={this.props.addCardToList}
+        />
+      )
       default:
       return <Home/>
     }
   }
   render() {
-
-    console.log(this.props.searchResults)
 
     const { currentView } = this.props
     return(
