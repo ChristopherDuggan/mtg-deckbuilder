@@ -1,13 +1,7 @@
 import React from 'react'
 
 class Results extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state ={
-      displayList: []
-    }
-  }
-  render() {
+    render() {
     let displayList = []
 
     const renderResults = this.props.results.map(result =>{

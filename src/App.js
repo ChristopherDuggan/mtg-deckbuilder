@@ -164,12 +164,24 @@ class App extends Component {
   }
 
     addCardToList (card) {
-      card.count = 1
-      this.setState(prevState => prevState.deckArray.push(card))
-
+      let listNames = this.state.deckArray.map(card => card.name)
+      console.log(listNames)
+      if(!listNames.includes(card.name)){
+        card.count = 1
+        this.setState(prevState => prevState.deckArray.push(card))
+      } else {
+        let index = this.state.deckArray.indexOf(card)
+        if(this.state.deckArray[index].count < 4){
+        this.setState(prevState => prevState.deckArray[index].count++)
+      }
+    }
   }
 
   incrementCard (card) {
+    if(!card.count){
+      card.count = 0;
+      console.log(card.count)
+    }
     if(card.count < 4) {
       card.count++
 
