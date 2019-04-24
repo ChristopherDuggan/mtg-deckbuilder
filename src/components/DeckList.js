@@ -16,6 +16,7 @@ class DeckList extends React.Component {
 
     return (
       <ul>
+        <li><button onClick={this.props.toggleSaveMode}>Save Deck</button></li>
         {makeList}
       </ul>
     )

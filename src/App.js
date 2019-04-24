@@ -121,7 +121,9 @@ class App extends Component {
         }
       ],
       "id": "b0b85155-481b-5fc0-961c-db73df1cf3da"
-    },]
+    },],
+      saveMode: false
+
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleTextInput = this.handleTextInput.bind(this)
@@ -129,6 +131,8 @@ class App extends Component {
     this.addCardToList = this.addCardToList.bind(this)
     this.incrementCard = this.incrementCard.bind(this)
     this.decrementCard = this.decrementCard.bind(this)
+    this.storeDeck = this.storeDeck.bind(this)
+    this.toggleSaveMode = this.toggleSaveMode.bind(this)
   }
 
   handleSubmit (e) {
@@ -163,16 +167,26 @@ class App extends Component {
     .then(data => this.setState({results: data}))
   }
 
-    addCardToList (card) {
-      let listNames = this.state.deckArray.map(card => card.name)
-      console.log(listNames)
-      if(!listNames.includes(card.name)){
-        card.count = 1
-        this.setState(prevState => prevState.deckArray.push(card))
-      } else {
-        let index = this.state.deckArray.indexOf(card)
-        if(this.state.deckArray[index].count < 4){
+  addCardToList (card) {
+    let listNames = this.state.deckArray.map(card => card.name)
+    console.log(listNames)
+    if(!listNames.includes(card.name)){
+      card.count = 1
+      this.setState(prevState => prevState.deckArray.push(card))
+    } else {
+      let index = this.state.deckArray.indexOf(card)
+      if(this.state.deckArray[index].count < 4
+      || card.supertypes.includes('Basic')
+      || card.text.toLowerCase().includes('a deck can have any number of cards named')
+      ){
         this.setState(prevState => prevState.deckArray[index].count++)
+
+        if (card.supertypes.includes('Basic')) {
+          console.log('hits basic');
+        }
+        if (card.text.toLowerCase().includes('a deck can have any number of cards named')){
+          console.log('hits relentless rat logic');
+        }
       }
     }
   }
@@ -182,7 +196,9 @@ class App extends Component {
       card.count = 0;
       console.log(card.count)
     }
-    if(card.count < 4) {
+    if(card.count < 4
+      || card.supertypes.includes('Basic')
+      || card.text.toLowerCase().includes('a deck can have any number of cards named')) {
       card.count++
 
       const index = this.state.deckArray.findIndex((arrayCard) => arrayCard.name === card.name)
@@ -210,6 +226,17 @@ class App extends Component {
     }
   }
 
+  toggleSaveMode () {
+    console.log(this.state)
+    this.setState(prevState => ({saveMode: !prevState.saveMode}))
+  }
+
+  storeDeck () {
+    console.log(this.state.deckArray)
+    window.localStorage.setItem('deck', JSON.stringify(this.state.deckArray))
+    console.log(JSON.parse(window.localStorage.getItem('deck')))
+  }
+
   render() {
     return (
       <div>
@@ -227,6 +254,7 @@ class App extends Component {
           deckArray = {this.state.deckArray}
           incrementCard = {this.incrementCard}
           decrementCard = {this.decrementCard}
+          toggleSaveMode = {this.toggleSaveMode}
         />
       </div>
     );
