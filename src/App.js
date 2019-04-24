@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Header from './components/Header'
 import Main from './components/Main'
 import DeckList from './components/DeckList'
+import SavedDecks from './components/SavedDecks'
 import axios from 'axios'
 
 class App extends Component {
@@ -133,11 +134,12 @@ class App extends Component {
     this.decrementCard = this.decrementCard.bind(this)
     this.storeDeck = this.storeDeck.bind(this)
     this.toggleSaveMode = this.toggleSaveMode.bind(this)
+    this.handleSave = this.handleSave.bind(this)
   }
 
   handleSubmit (e) {
     e.preventDefault()
-    this.search(e, this.state.input)
+    this.search(this.state.input)
     this.changeView(e)
   }
 
@@ -156,7 +158,7 @@ class App extends Component {
     })
   }
 
-  search(e, parameters){
+  search(parameters){
     let url = `https://api.magicthegathering.io/v1/cards?`
 
     Object.entries(parameters)
@@ -227,14 +229,17 @@ class App extends Component {
   }
 
   toggleSaveMode () {
-    console.log(this.state)
     this.setState(prevState => ({saveMode: !prevState.saveMode}))
   }
 
-  storeDeck () {
-    console.log(this.state.deckArray)
-    window.localStorage.setItem('deck', JSON.stringify(this.state.deckArray))
-    console.log(JSON.parse(window.localStorage.getItem('deck')))
+  storeDeck (name) {
+    window.localStorage.setItem(`deck_${name}`, JSON.stringify(this.state.deckArray))
+  }
+
+  handleSave (e) {
+    e.preventDefault()
+    this.storeDeck(this.state.input.deckName)
+    this.toggleSaveMode()
   }
 
   render() {
@@ -245,6 +250,7 @@ class App extends Component {
           handleSubmit = {this.handleSubmit}
           handleTextInput = {this.handleTextInput}
         />
+        <SavedDecks />
         <Main
           currentView = {this.state.currentView}
           searchResults = {this.state.results}
@@ -255,6 +261,9 @@ class App extends Component {
           incrementCard = {this.incrementCard}
           decrementCard = {this.decrementCard}
           toggleSaveMode = {this.toggleSaveMode}
+          handleSave = {this.handleSave}
+          handleTextInput = {this.handleTextInput}
+          saveMode = {this.state.saveMode}
         />
       </div>
     );

@@ -13,13 +13,32 @@ class DeckList extends React.Component {
         </li>
       )
     })
-
-    return (
-      <ul>
-        <li><button onClick={this.props.toggleSaveMode}>Save Deck</button></li>
-        {makeList}
-      </ul>
-    )
+    if(this.props.saveMode === false){
+      return (
+        <ul>
+          <li><button onClick={this.props.toggleSaveMode}>Save Deck</button></li>
+          {makeList}
+        </ul>
+      )
+    } else {
+      return (
+        <ul>
+          <li>
+            <form
+            onSubmit={this.props.handleSave}
+            >
+              <button type="submit">Save</button>
+              <input
+                placeholder="Enter Deck Name"
+                input_type="deckName"
+                onChange={this.props.handleTextInput}
+              />
+            </form>
+          </li>
+          {makeList}
+        </ul>
+      )
+    }
   }
 }
 
