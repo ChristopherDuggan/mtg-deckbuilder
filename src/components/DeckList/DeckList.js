@@ -5,7 +5,8 @@ import './DeckList.css'
 class DeckList extends React.Component {
 
   render() {
-    const makeList = this.props.deckArray.map(card => {
+    const makeList =
+    this.props.deckArray.map(card => {
       return (
         <li key={card.name}>
           <span
@@ -35,9 +36,9 @@ class DeckList extends React.Component {
               saveMode = {this.props.saveMode}
             />
           </li>
+          <li><button id="DeckLoader" onClick={this.props.changeView}>View Saved Decks</button></li>
           {makeList}
         </ul>
-        <button id="DeckLoader" onClick={this.props.changeView}>View Saved Decks</button>
       </div>
     )
   }

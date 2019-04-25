@@ -6,7 +6,9 @@ class DeckLoader extends React.Component {
 
     return (
       <div>
-        <SavedDecks/>
+        <SavedDecks
+          handleLoad = {this.props.handleLoad}
+        />
       </div>
     )
   }

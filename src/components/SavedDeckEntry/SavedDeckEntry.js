@@ -3,38 +3,35 @@ import './SavedDeckEntry.css'
 
 class SavedDeckEntry extends React.Component {
   render() {
+    const deckArray = JSON.parse(window.localStorage.getItem(this.props.deck))
+    const deckName = this.props.deck.substring(5)
 
-    const makeEntry = this.props.savedDecks.map(deck => {
+    const renderedDeck = deckArray.map(card => {
+      return(
 
-      const deckName = deck.substring(5)
+        <li>{card.name} x {card.count} </li>
 
-      const deckArray = JSON.parse(window.localStorage.getItem(deck))
-
-      const renderedDeck = deckArray.map(card => {
-        return(
-
-          <li>{card.name} x {card.count} </li>
-        )
+      )
 
     })
-
-
-      return  (
-
-
+    return (
+      <div
+        key={deckName}
+        className="saved-deck-entry"
+      >
+        <h1>{deckName}</h1>
         <ul>
-          <h1>{deckName}</h1>
           {renderedDeck}
         </ul>
-      )
-    })
-
-    return (
-      <div className="saved-deck-entry">
-        {makeEntry}
+        <button
+          id={deckName}
+          onClick={this.props.handleLoad}
+          className="load-mode-button"
+        >
+          Load Deck
+        </button>
       </div>
     )
   }
 }
-
 export default SavedDeckEntry

@@ -5,6 +5,7 @@
   margin-bottom: 25px;
   border: 1px solid red;
   overflow: auto;
+  position: relative;
 }
 
 .plus-minus {
@@ -23,4 +24,8 @@
 
 .deck-list input {
   width: 133px;
+}
+
+#DeckLoader {
+  margin: 10px 0px;
 }

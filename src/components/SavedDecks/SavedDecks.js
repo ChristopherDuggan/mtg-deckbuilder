@@ -7,12 +7,18 @@ class SavedDecks extends React.Component {
 
     const savedDecks = Object.keys(window.localStorage).filter(item => item.startsWith('deck_'))
 
-
-    return (
-      <div className="results">
+    const renderDecks = savedDecks.map(deck => {
+      return (
         <SavedDeckEntry
-          savedDecks = {savedDecks}
+          deck = {deck}
+          handleLoad = {this.props.handleLoad}
         />
+      )
+    })
+
+    return(
+      <div className="saved-decks">
+        {renderDecks}
       </div>
     )
   }

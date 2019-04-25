@@ -2,7 +2,7 @@ import React from 'react'
 import Home from '../Home/Home'
 import Advanced from '../Advanced/Advanced'
 import Results from '../Results/Results'
-import DeckLoader from '../DeckLoader/DeckLoader'
+import SavedDecks from '../SavedDecks/SavedDecks'
 import './Main.css'
 
 class Main extends React.Component{
@@ -11,7 +11,11 @@ class Main extends React.Component{
       case 'Advanced':
       return <Advanced/>
       case 'DeckLoader':
-      return <DeckLoader/>
+      return (
+        <SavedDecks
+          handleLoad = {this.props.handleLoad}
+        />
+      )
       case 'Results':
       return(
         <Results

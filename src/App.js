@@ -133,8 +133,8 @@ class App extends Component {
   }
 
   handleLoad (e) {
-    e.preventDefault()
-    this.toggleLoadMode()
+    this.setState({ deckArray:   JSON.parse(window.localStorage.getItem(`deck_${e.target.id}`))
+    })
   }
 
   render() {
@@ -149,6 +149,7 @@ class App extends Component {
             currentView = {this.state.currentView}
             searchResults = {this.state.results}
             addCardToList = {this.addCardToList}
+            handleLoad = {this.handleLoad}
           />
           <DeckList
             deckArray = {this.state.deckArray}
