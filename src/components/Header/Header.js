@@ -5,12 +5,14 @@ import github from '../../images/github.png'
 class Header extends React.Component {
   render() {
 
+    const { handleSubmit, handleTextInput } = this.props
+    
     return(
       <div className="header">
 
         <form
           id="Results"
-          onSubmit={this.props.handleSubmit}>
+          onSubmit={handleSubmit}>
           <button type="submit">Search</button>
           <input
             placeholder="Search by Name"
@@ -19,7 +21,7 @@ class Header extends React.Component {
 
             id="nameField"
 
-            onChange={this.props.handleTextInput}
+            onChange={handleTextInput}
           />
 
         </form>

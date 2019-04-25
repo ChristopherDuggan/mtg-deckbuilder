@@ -3,8 +3,12 @@ import './SavedDeckEntry.css'
 
 class SavedDeckEntry extends React.Component {
   render() {
-    const deckArray = JSON.parse(window.localStorage.getItem(this.props.deck))
-    const deckName = this.props.deck.substring(5)
+
+    const { deck, handleLoad } = this.props
+
+
+    const deckArray = JSON.parse(window.localStorage.getItem(deck))
+    const deckName = deck.substring(5)
 
     const renderedDeck = deckArray.map(card => {
       return(
@@ -25,7 +29,7 @@ class SavedDeckEntry extends React.Component {
         </ul>
         <button
           id={deckName}
-          onClick={this.props.handleLoad}
+          onClick={handleLoad}
           className="load-mode-button"
         >
           Load Deck

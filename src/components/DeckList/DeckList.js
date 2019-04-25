@@ -5,19 +5,30 @@ import './DeckList.css'
 class DeckList extends React.Component {
 
   render() {
-    const makeList =
-    this.props.deckArray.map(card => {
+
+    const {
+      deckArray,
+      incrementCard,
+      decrementCard,
+      toggleSaveMode,
+      handleSave,
+      handleTextInput,
+      saveMode,
+      changeView
+    } = this.props
+
+    const makeList = deckArray.map(card => {
       return (
         <li key={card.name}>
           <span
             className="plus-minus"
-            onClick={() => this.props.incrementCard(card)}
+            onClick={() => incrementCard(card)}
           >
             +&ensp;
           </span>
           <span
            className="plus-minus"
-           onClick={() => this.props.decrementCard(card)}
+           onClick={() => decrementCard(card)}
            >
            -&ensp;
           </span>
@@ -30,13 +41,13 @@ class DeckList extends React.Component {
         <ul>
           <li>
             <DeckSaver
-              toggleSaveMode = {this.props.toggleSaveMode}
-              handleSave = {this.props.handleSave}
-              handleTextInput = {this.props.handleTextInput}
-              saveMode = {this.props.saveMode}
+              toggleSaveMode = {toggleSaveMode}
+              handleSave = {handleSave}
+              handleTextInput = {handleTextInput}
+              saveMode = {saveMode}
             />
           </li>
-          <li><button id="DeckLoader" onClick={this.props.changeView}>View Saved Decks</button></li>
+          <li><button id="DeckLoader" onClick={changeView}>View Saved Decks</button></li>
           {makeList}
         </ul>
       </div>

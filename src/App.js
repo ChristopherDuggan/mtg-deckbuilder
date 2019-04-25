@@ -29,6 +29,8 @@ class App extends Component {
     this.handleLoad = this.handleLoad.bind(this)
   }
 
+
+
   handleSubmit (e) {
     e.preventDefault()
     this.search(this.state.input)
@@ -133,28 +135,45 @@ class App extends Component {
   }
 
   render() {
+
+    const {
+      currentView, input, results, cardToAdd, deckArray, saveMode
+    } = this.state
+
+    const {
+      handleSubmit,
+      handleTextInput,
+      addCardToList,
+      handleLoad,
+      incrementCard,
+      decrementCard,
+      toggleSaveMode,
+      handleSave,
+      changeView
+    } = this
+
     return (
       <div className="app">
         <Header
-          handleSubmit = {this.handleSubmit}
-          handleTextInput = {this.handleTextInput}
+          handleSubmit = {handleSubmit}
+          handleTextInput = {handleTextInput}
         />
         <div className="content-box">
           <Main
-            currentView = {this.state.currentView}
-            searchResults = {this.state.results}
-            addCardToList = {this.addCardToList}
-            handleLoad = {this.handleLoad}
+            currentView = {currentView}
+            searchResults = {results}
+            addCardToList = {addCardToList}
+            handleLoad = {handleLoad}
           />
           <DeckList
-            deckArray = {this.state.deckArray}
-            incrementCard = {this.incrementCard}
-            decrementCard = {this.decrementCard}
-            toggleSaveMode = {this.toggleSaveMode}
-            handleSave = {this.handleSave}
-            handleTextInput = {this.handleTextInput}
-            saveMode = {this.state.saveMode}
-            changeView = {this.changeView}
+            deckArray = {deckArray}
+            incrementCard = {incrementCard}
+            decrementCard = {decrementCard}
+            toggleSaveMode = {toggleSaveMode}
+            handleSave = {handleSave}
+            handleTextInput = {handleTextInput}
+            saveMode = {saveMode}
+            changeView = {changeView}
           />
         </div>
        </div>

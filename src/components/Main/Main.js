@@ -27,6 +27,7 @@ class Main extends React.Component{
   render() {
 
     const { currentView } = this.props
+    
     return(
       <main className="main">
         {this.renderSwitch(currentView)}

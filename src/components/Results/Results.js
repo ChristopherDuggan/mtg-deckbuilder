@@ -3,16 +3,19 @@ import ResultEntry from '../ResultEntry/ResultEntry'
 import './Results.css'
 
 class Results extends React.Component {
-    render() {
+  render() {
+
+    const { results, addCardToList} = this.props
+
     let displayList = []
 
-    const renderResults = this.props.results.map(result =>{
+    const renderResults = results.map(result =>{
       if(!displayList.includes(result.name)) {
         displayList.push(result.name)
         return(
           <ResultEntry
             result = {result}
-            addCardToList = {this.props.addCardToList}
+            addCardToList = {addCardToList}
           />
         )
       }
