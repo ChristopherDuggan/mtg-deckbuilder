@@ -1,4 +1,6 @@
 import React from 'react'
+import SavedDeckEntry from '../SavedDeckEntry/SavedDeckEntry'
+import './SavedDecks.css'
 
 class SavedDecks extends React.Component {
   render() {
@@ -6,25 +8,11 @@ class SavedDecks extends React.Component {
     const savedDecks = Object.keys(window.localStorage).filter(item => item.startsWith('deck_'))
 
 
-    const savedDeckList = savedDecks.map(deck => {
-      const deckName = deck.substring(5)
-      const deckArray = JSON.parse(window.localStorage.getItem(deck))
-      const renderedDeck = deckArray.map(card => {
-        return(
-          <li>{card.name} x {card.count} </li>
-        )
-      })
-      return  (
-        <ul>
-          <li>{deckName}</li>
-          {renderedDeck}
-        </ul>
-      )
-    })
-
     return (
-      <div>
-        {savedDeckList}
+      <div className="results">
+        <SavedDeckEntry
+          savedDecks = {savedDecks}
+        />
       </div>
     )
   }

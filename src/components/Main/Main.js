@@ -2,16 +2,16 @@ import React from 'react'
 import Home from '../Home/Home'
 import Advanced from '../Advanced/Advanced'
 import Results from '../Results/Results'
-import DeckDetails from '../DeckDetails/DeckDetails'
+import DeckLoader from '../DeckLoader/DeckLoader'
 import './Main.css'
 
 class Main extends React.Component{
   renderSwitch(currentView){
     switch(currentView){
-      case 'DeckDetails':
-      return <DeckDetails/>;
       case 'Advanced':
       return <Advanced/>
+      case 'DeckLoader':
+      return <DeckLoader/>
       case 'Results':
       return(
         <Results

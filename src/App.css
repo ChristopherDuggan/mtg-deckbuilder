@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css?family=Trirong');
+
+
+.app {
+  width: 100vw;
+  height: 100vh;
+  background-color: #666666;
+  color: #eee;
+  background-image: url('./images/pact-of-negation.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  font-family: 'Trirong', serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-box {
+  width: 100%;
+  flex: 1;
+  display: flex;
+}
+
+button {
+  height: 2em;
+  font-size: 1em;
+  background-color: #ab3828;
+  color: inherit;
+  padding: 0 10px;
+}
+
+input {
+  font-size: 1em;
+  height: 2em;
+  margin: 0 10px;
+  padding: 0 10px;
+}

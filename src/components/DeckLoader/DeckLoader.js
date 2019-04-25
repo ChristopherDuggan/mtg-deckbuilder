@@ -1,10 +1,13 @@
 import React from 'react'
+import SavedDecks from '../SavedDecks/SavedDecks'
 
 class DeckLoader extends React.Component {
   render() {
 
     return (
-    <button onClick={this.props.}
+      <div>
+        <SavedDecks/>
+      </div>
     )
   }
 }

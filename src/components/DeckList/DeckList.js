@@ -1,6 +1,5 @@
 import React from 'react'
 import DeckSaver from '../DeckSaver/DeckSaver'
-import DeckLoader from '../DeckLoader/DeckLoader'
 import './DeckList.css'
 
 class DeckList extends React.Component {
@@ -38,7 +37,7 @@ class DeckList extends React.Component {
           </li>
           {makeList}
         </ul>
-        <button onClick={this.props.changeView}>View Saved Decks
+        <button id="DeckLoader" onClick={this.props.changeView}>View Saved Decks</button>
       </div>
     )
   }
