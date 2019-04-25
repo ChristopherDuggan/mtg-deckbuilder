@@ -1,8 +1,9 @@
 import React from 'react'
-import Home from './Home'
-import Advanced from './Advanced'
-import Results from './Results'
-import DeckDetails from './DeckDetails'
+import Home from '../Home/Home'
+import Advanced from '../Advanced/Advanced'
+import Results from '../Results/Results'
+import DeckDetails from '../DeckDetails/DeckDetails'
+import './Main.css'
 
 class Main extends React.Component{
   renderSwitch(currentView){
@@ -26,7 +27,7 @@ class Main extends React.Component{
 
     const { currentView } = this.props
     return(
-      <main>
+      <main className="main">
         {this.renderSwitch(currentView)}
       </main>
     )

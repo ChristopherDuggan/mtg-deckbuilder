@@ -1,4 +1,6 @@
 import React from 'react'
+import ResultEntry from '../ResultEntry/ResultEntry'
+import './Results.css'
 
 class Results extends React.Component {
     render() {
@@ -8,22 +10,16 @@ class Results extends React.Component {
       if(!displayList.includes(result.name)) {
         displayList.push(result.name)
         return(
-          <div key={result.id}>
-            <h3>{result.name}</h3>
-            <img src={result.imageUrl}/>
-            <button
-              onClick={() => this.props.addCardToList(result)}
-              name={result.name}
-              id={result.id}
-            >Add To Deck</button>
-          </div>
+          <ResultEntry
+            result = {result}
+            addCardToList = {this.props.addCardToList}
+          />
         )
       }
     })
 
     return (
-      <div>
-        <h1>Results View</h1>
+      <div className="results">
         {renderResults}
       </div>
 

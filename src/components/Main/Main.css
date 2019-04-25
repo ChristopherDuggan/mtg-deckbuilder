@@ -1,0 +1,6 @@
+.main {
+  height: 100%;
+  overflow: hidden;
+  padding: 0 25px 25px 25px;
+  flex: 1;
+}

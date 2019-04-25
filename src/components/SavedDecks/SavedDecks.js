@@ -7,7 +7,7 @@ class SavedDecks extends React.Component {
 
 
     const savedDeckList = savedDecks.map(deck => {
-
+      const deckName = deck.substring(5)
       const deckArray = JSON.parse(window.localStorage.getItem(deck))
       const renderedDeck = deckArray.map(card => {
         return(
@@ -16,6 +16,7 @@ class SavedDecks extends React.Component {
       })
       return  (
         <ul>
+          <li>{deckName}</li>
           {renderedDeck}
         </ul>
       )
