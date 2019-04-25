@@ -1,5 +1,6 @@
 import React from 'react'
 import './Header.css'
+import github from '../../images/github.png'
 
 class Header extends React.Component {
   render() {
@@ -23,6 +24,9 @@ class Header extends React.Component {
 
         </form>
       <h1>Chris' MtG Deckbuilder</h1>
+      <a href="https://github.com/christopherduggan">
+        <img src={github} alt="Chris' GitHub" className="icon"/>
+      </a>
       </div>
     )
   }
