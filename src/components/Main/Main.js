@@ -8,8 +8,6 @@ import './Main.css'
 class Main extends React.Component{
   renderSwitch(currentView){
     switch(currentView){
-      case 'Advanced':
-      return <Advanced/>
       case 'DeckLoader':
       return (
         <SavedDecks
