@@ -1,6 +1,5 @@
 import React from 'react'
 import Home from '../Home/Home'
-import Advanced from '../Advanced/Advanced'
 import Results from '../Results/Results'
 import SavedDecks from '../SavedDecks/SavedDecks'
 import './Main.css'

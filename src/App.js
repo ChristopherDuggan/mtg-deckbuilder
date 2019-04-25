@@ -16,7 +16,6 @@ class App extends Component {
       cardToAdd:{},
       deckArray: [],
       saveMode: false,
-      loadMode: false
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleTextInput = this.handleTextInput.bind(this)
@@ -86,7 +85,7 @@ class App extends Component {
     }
     if(card.count < 4
       || card.supertypes.includes('Basic')
-      || card.text.toLowerCase().includes('a deck can have any number of cards named')) {
+      || (card.text != null && card.text.toLowerCase().includes('a deck can have any number of cards named'))) {
       card.count++
 
       const index = this.state.deckArray.findIndex((arrayCard) => arrayCard.name === card.name)
@@ -116,10 +115,6 @@ class App extends Component {
 
   toggleSaveMode () {
     this.setState(prevState => ({saveMode: !prevState.saveMode}))
-  }
-
-  toggleLoadMode () {
-    this.setState(prevState => ({loadMode: !prevState.loadMode}))
   }
 
   storeDeck (name) {
@@ -156,12 +151,9 @@ class App extends Component {
             incrementCard = {this.incrementCard}
             decrementCard = {this.decrementCard}
             toggleSaveMode = {this.toggleSaveMode}
-            toggleLoadMode = {this.toggleLoadMode}
             handleSave = {this.handleSave}
-            handleLoad = {this.handleLoad}
             handleTextInput = {this.handleTextInput}
             saveMode = {this.state.saveMode}
-            loadMode = {this.state.loadMode}
             changeView = {this.changeView}
           />
         </div>
